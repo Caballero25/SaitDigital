@@ -1,0 +1,447 @@
+/*GENERALES*/
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #0e1012;
+}
+
+/*INICIO NAVIGATOR*/
+.mainNav {
+  z-index: 1000;
+  width: 100%;
+  top: 0;
+  position: fixed;
+}
+/*Menu Desktop*/
+.menuDesktopContainer {
+  width: 100%;
+  height: 70px;
+  background-color: black;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.menuDesktop {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  margin-left: -40px;
+}
+
+.menuDesktop li {
+  list-style: none;
+}
+
+.menuDesktop li .logoNav {
+  height: 50px;
+  width: 150px;
+}
+
+.menuDesktop li a {
+  text-decoration: none;
+  color: white;
+  transition: text-decoration 0.3s ease;
+}
+
+.menuDesktop li a:hover {
+  text-decoration: underline;
+}
+
+/*Menu Phone*/
+.menuPhoneContainer *,
+.menuPhoneContainer *::before,
+.menuPhoneContainer *::after {
+  box-sizing: border-box;
+}
+
+.menuPhoneContainer {
+  width: 100%;
+  background-color: black;
+  display: none;
+  flex-direction: row;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.menuPhoneContainer .logoNav {
+  height: 70px;
+  width: 210px;
+}
+
+.hamburger {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 20px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: #f953c6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #7a7a7a,
+      #ffdbdb
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #7a7a7a,
+      #ffdbdb
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    transform: rotate(0deg);
+    transition: all 0.4s cubic-bezier(0.54, -0.1, 0.57, 0.57);
+  }
+
+  .hamburger-input {
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+  }
+
+  .hamburger-line {
+    width: 100%;
+    background: black;
+    height: 2px;
+    display: block;
+    border-radius: 6px;
+    transition: transform 0.4s cubic-bezier(0.54, -0.81, 0.57, 0.57);
+    position: relative;
+
+    &.first,
+    &.third {
+      width: 50%;
+    }
+
+    &.third {
+      margin-left: 50%;
+      transform-origin: left;
+    }
+  }
+}
+
+.menu-button-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  .item-list {
+    position: absolute;
+    top: 91px;
+    transform: translateX(-50%) scale(0);
+    transform-origin: center;
+    transition: all 0.4s cubic-bezier(0.54, -0.1, 0.57, 0.57);
+    background-color: black;
+    color: #fff;
+    width: 200px;
+    right: -60;
+    padding: 15px 0;
+    text-align: left;
+    border-radius: 100px;
+    font-weight: 300;
+    opacity: 0;
+    user-select: none;
+    border: 1px solid #fff;
+    div {
+      padding: 10px 30px;
+      a {
+        text-align: left;
+        text-decoration: none;
+        padding-right: 80px;
+        cursor: pointer;
+        width: 100%;
+        color: #fff;
+        font-weight: 300;
+      }
+    }
+  }
+
+  .menu-button {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    right: 0;
+    align-self: self-end;
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  .icon-wrapper {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    right: 0;
+    align-self: self-end;
+    z-index: 1;
+    opacity: 1;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+}
+
+.menu-button {
+  &:checked ~ .item-list {
+    transform: translateX(-50%) scale(1);
+    border-radius: 20px;
+    opacity: 1;
+    user-select: auto;
+  }
+
+  &:checked ~ .icon-wrapper .hamburger-line.second {
+    transform: rotate(-45deg);
+  }
+
+  &:checked ~ .icon-wrapper .hamburger-line.first {
+    transform: translate(2px, 8px) rotate(-135deg);
+  }
+
+  &:checked ~ .icon-wrapper .hamburger-line.third {
+    transform: translate(11px, -3px) rotate(-135deg);
+  }
+
+  &:checked ~ .icon-wrapper .hamburger:before {
+    transform: rotate(45deg);
+  }
+}
+.signature-wrapper {
+  margin-top: 150px;
+  margin-bottom: 100px;
+  text-align: center;
+
+  .signature-title {
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: normal;
+    color: #444;
+  }
+
+  .signature-link {
+    color: #444;
+    display: inline-block;
+    margin: 20px 0 10px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border-bottom: solid 2px #444;
+  }
+}
+
+@media only screen and (max-width: 861px) {
+  .menuDesktop {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .menuDesktopContainer {
+    display: none;
+  }
+  .menuPhoneContainer {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .menuPhoneContainer .logoNav {
+    height: 60px;
+    width: 180px;
+  }
+}
+
+/*FÍN NAVIGATOR */
+
+/*INICIO FIRST SECTION*/
+.firstSectionContainer {
+  background-image: url("https://github.githubassets.com/images/modules/site/home/hero-glow.svg");
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#globeCanvas {
+  height: 50vw;
+  width: 50vw;
+}
+
+.firstSectionContainer {
+  position: relative;
+  background-color: #040d21;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.principalText {
+  display: flex;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 20px;
+  flex-direction: column;
+  color: white;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.principalText h1,
+.principalText h2 {
+  font-size: 45px;
+}
+
+.principalText h1,
+.principalText h2,
+.principalText span {
+  margin-top: 5px;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+.principalText span {
+  color: #c5c5c5;
+  font-size: 19px;
+}
+
+@media only screen and (max-width: 651px) {
+  .firstSectionContainer {
+    flex-direction: column;
+  }
+  .principalText {
+    padding-top: 150px;
+    height: 50vh;
+  }
+  #globeCanvas {
+    margin-top: -150px;
+    height: 80vw;
+    width: 80vw;
+  }
+}
+
+@media only screen and (max-width: 435px) {
+  #globeCanvas {
+    margin-top: -50px;
+  }
+}
+
+/*FÍN FIRST SECTION*/
+
+/*INICIO SECOND SECTION*/
+.secondSectionContainer {
+  padding-top: 160px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.secondSectioninfoContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.box {
+  height: auto;
+  width: 450px;
+  border: 2px solid rgb(12, 12, 12);
+  text-align: center;
+  background-color: black;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  box-shadow: #04347d 2px 2px 14px 0.2px;
+}
+.bigbox h1 {
+  color: white;
+}
+
+.bigbox p {
+  color: white;
+  line-height: 24px;
+}
+
+.bigbox {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 10px;
+}
+.bigbox:hover {
+  color: aliceblue;
+}
+
+.secondSectionVideoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.secondSectionVideoContainer video {
+  border-radius: 8px;
+  width: 600px;
+  box-shadow: 5px 5px 25px black;
+}
+
+@media only screen and (max-width: 1052px) {
+  .secondSectionContainer {
+    padding-bottom: 70px;
+  }
+  .secondSectioninfoContainer {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .secondSectionVideoContainer video {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 555px) {
+  .secondSectionContainer {
+    padding-bottom: 300px;
+  }
+  .box {
+    width: 90%;
+  }
+}
+/*FÍN SECOND SECTION*/
