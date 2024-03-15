@@ -356,7 +356,7 @@ body {
 
 @media only screen and (max-width: 435px) {
   #globeCanvas {
-    margin-top: -50px;
+    margin-top: 50px;
   }
 }
 
@@ -367,8 +367,11 @@ body {
   padding-top: 160px;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   width: 100%;
+}
+
+.info {
+  height: auto;
 }
 
 .secondSectioninfoContainer {
@@ -379,6 +382,8 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  width: auto;
+  height: auto;
 }
 
 .box {
@@ -416,17 +421,21 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: auto;
+  height: auto;
 }
 
 .secondSectionVideoContainer video {
+  z-index: 50;
   border-radius: 8px;
   width: 600px;
+  height: auto;
   box-shadow: 5px 5px 25px black;
 }
 
 @media only screen and (max-width: 1052px) {
   .secondSectionContainer {
+    height: auto;
     padding-bottom: 70px;
   }
   .secondSectioninfoContainer {
@@ -436,16 +445,557 @@ body {
     align-items: center;
   }
   .secondSectionVideoContainer video {
+    margin-bottom: 5px;
     width: 80%;
   }
 }
 
 @media only screen and (max-width: 555px) {
   .secondSectionContainer {
-    padding-bottom: 300px;
+    padding-bottom: 20px;
   }
   .box {
     width: 90%;
   }
 }
 /*FÍN SECOND SECTION*/
+
+.ThirdSectionContainer {
+  margin-top: 100px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+:root {
+  /** color system **/
+  --system-color-dark: oklch(0% 0 0);
+  --system-color-light: oklch(100% 0 0);
+  --system-color-logo: oklch(60.07% 0.241 28.73 / 80%);
+  --system-color-red-100: oklch(60.07% 0.241 28.73 / 25%);
+  --system-color-red-200: oklch(60.07% 0.241 28.73 / 50%);
+  --system-color-red-300: oklch(60.07% 0.241 28.73 / 100%);
+
+  /** color themes **/
+  --system-color-theme-paths: var(--system-color-red-100)
+    var(--system-color-red-300);
+  --system-color-theme-planets: var(--system-color-red-200)
+    var(--system-color-red-200) var(--system-color-red-200)
+    var(--system-color-red-300);
+
+  /** planet's radius **/
+  /* ♂ Mars real radius ≈ 3389.5km. */
+  --planet-radius-mars: 33.895px;
+  /* 🜨 Earth real radius ≈ 6371km. */
+  --planet-radius-earth: 63.71px;
+  /* ♀ Venus real radius ≈ 6051.8km. */
+  --planet-radius-venus: 60.518px;
+  /* ☿ Mercury real radius ≈ 2439.7km. */
+  --planet-radius-mercury: 24.397px;
+  /* ☉ Sun real radius ≈ 696340km (40 times smaller compared to the planet's dimensions values). */
+  --star-radius-sun: 174.085px;
+
+  /** planet's trajectories **/
+  --planet-trajectory-mars: 446.085px;
+  --planet-trajectory-earth: 332.085px;
+  --planet-trajectory-venus: 257.085px;
+  --planet-trajectory-mercury: 203.085px;
+
+  /** units **/
+  --system-margin-mars: 292px;
+  --system-margin-earth: 35px;
+  --system-margin-venus: 15px;
+  --system-margin-mercury: 38px;
+  --system-border-width: min(2px, 0.4vmin);
+}
+
+*,
+*::after,
+*::before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.ThirdSectionContainer {
+  overflow: hidden;
+  background-color: var(--system-color-dark);
+
+  /* ☛ ⚠ The distances between the planets and the Sun are not respected because of the diameter of it.
+      Also note that for aesthetic reasons, the planet's trajectories are not elliptical and are not oriented as they should be. */
+
+  & .solar-system {
+    margin-top: 20px;
+    margin-left: -35vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    transform: skewX(-45deg);
+    -webkit-transform: skewX(-45deg);
+
+    & .solar-system__sun {
+      z-index: 1;
+
+      /* ☛ ⚠ Size of the Sun is not respected here. */
+      aspect-ratio: 1;
+      inline-size: var(--star-radius-sun);
+      border-radius: 50%;
+
+      background-color: var(--system-color-red-300);
+      background: linear-gradient(
+        135deg,
+        var(--system-color-red-300) 20%,
+        transparent
+      );
+
+      filter: drop-shadow(0px 0px 2px var(--system-color-red-300)) blur(1px);
+      -webkit-filter: drop-shadow(0px 0px 2px var(--system-color-red-300))
+        blur(1px);
+
+      transform: skewX(45deg);
+      -webkit-transform: skewX(45deg);
+    }
+
+    & article:not(.solar-system__sun) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: relative;
+      z-index: 2;
+
+      aspect-ratio: 1;
+      border-radius: 50%;
+
+      background: transparent;
+
+      border-width: var(--system-border-planets-width);
+      border-style: solid;
+      border-color: var(--system-color-theme-planets);
+
+      &::after {
+        position: inherit;
+        content: "";
+        aspect-ratio: 1;
+        inline-size: 40%;
+        border-radius: inherit;
+
+        background: var(--system-color-red-300);
+
+        -webkit-filter: drop-shadow(0px 0px 4.8px var(--system-color-red-200))
+          blur(0.5px);
+        filter: drop-shadow(0px 0px 4.8px var(--system-color-red-200))
+          blur(0.5px);
+      }
+    }
+
+    & section {
+      position: absolute;
+      z-index: 2;
+      aspect-ratio: 1;
+
+      border-radius: 50%;
+
+      border-width: var(--system-border-width);
+      border-style: solid;
+      border-color: var(--system-color-theme-paths);
+    }
+
+    & .solar-system__mercury-trajectory {
+      inline-size: var(--planet-trajectory-mercury);
+
+      /* ☿ Mercury revolution duration ≈ 87.969 days. */
+      -webkit-animation: revolution 43.9845s linear infinite;
+      animation: revolution 43.9845s linear infinite;
+
+      & .solar-system__mercury-trajectory__mercury {
+        inline-size: var(--planet-radius-mercury);
+        top: var(--system-margin-mercury);
+
+        /* ☿ Mercury rotation period ≈ 58.645 days. */
+        -webkit-animation: revolution 29.3225s linear infinite;
+        animation: revolution 29.3225s linear infinite;
+      }
+    }
+
+    & .solar-system__venus-trajectory {
+      inline-size: var(--planet-trajectory-venus);
+
+      /* ♀ Venus revolution duration ≈ 224.667 days. */
+      -webkit-animation: revolution 112.3335s linear infinite;
+      animation: revolution 112.3335s linear infinite;
+
+      & .solar-system__venus-trajectory__venus {
+        inline-size: var(--planet-radius-venus);
+        top: var(--system-margin-venus);
+
+        /* ♀ Venus rotation period ≈ 243.023 days. */
+        -webkit-animation: revolution 121.513s linear infinite;
+        animation: revolution 121.513s linear infinite;
+      }
+    }
+
+    & .solar-system__earth-trajectory {
+      inline-size: var(--planet-trajectory-earth);
+
+      /* 🜨 Earth revolution duration ≈ 365.2422 days. */
+      -webkit-animation: revolution 182.6211s linear infinite;
+      animation: revolution 182.6211s linear infinite;
+
+      & .solar-system__earth-trajectory__earth {
+        inline-size: var(--planet-radius-earth);
+        top: var(--system-margin-earth);
+
+        /* ✑ animation-duration: .5s ≈ 24 hours on Earth. */
+        -webkit-animation: revolution 0.4874s linear infinite;
+        animation: revolution 0.4874s linear infinite;
+
+        &::after {
+          -webkit-animation: blink 2s linear infinite;
+          animation: blink 2s linear infinite;
+        }
+      }
+    }
+
+    & .solar-system__mars-trajectory {
+      inline-size: var(--planet-trajectory-mars);
+
+      /* ♂ Mars revolution duration ≈ 686.885 days. */
+      -webkit-animation: revolution 343.4425s linear infinite;
+      animation: revolution 343.4425s linear infinite;
+
+      & .solar-system__mars-trajectory__mars {
+        inline-size: var(--planet-radius-mars);
+        top: var(--system-margin-mars);
+
+        /* ✑ animation-duration: .5s ≈ 24 hours on Earth. */
+        -webkit-animation: revolution 0.5128s linear infinite;
+        animation: revolution 0.5128s linear infinite;
+      }
+    }
+  }
+  & #logo {
+    inline-size: 8vmin;
+    aspect-ratio: 1;
+    position: absolute;
+    inset: auto 1.6vmin 1.6vmin auto;
+
+    opacity: 0.3;
+    -webkit-filter: saturate(60%);
+    filter: saturate(60%);
+
+    transition: opacity 0.7s linear, filter 0.7s linear;
+
+    & circle {
+      -webkit-fill: var(--system-color-logo);
+      fill: var(--system-color-logo);
+    }
+
+    & path {
+      -webkit-fill: var(--system-color-dark);
+      fill: var(--system-color-dark);
+    }
+
+    &:hover {
+      opacity: 1;
+      -webkit-filter: saturate(100%);
+      filter: saturate(100%);
+    }
+  }
+}
+
+/*
+  ▀▄▀▄▀▄▀▄▀▄▀▄ ANIMATIONS ▀▄▀▄▀▄▀▄▀▄▀▄
+  */
+
+@keyframes revolution {
+  to {
+    transform: rotateZ(1turn);
+  }
+}
+
+@keyframes blink {
+  to {
+    background-color: var(--system-color-dark);
+
+    filter: drop-shadow(0 0 0 var(--system-color-red-200)) blur(0);
+  }
+}
+
+/*** ◰ media queries ***/
+/** smartphone **/
+@media screen and (width < 768px) {
+  .ThirdSectionContainer {
+    flex-direction: column;
+    & .solar-system {
+      margin-top: 20px;
+      & .solar-system__sun {
+        inline-size: calc(var(--star-radius-sun) / 2);
+      }
+      & .solar-system__mercury-trajectory {
+        inline-size: calc(var(--planet-trajectory-mercury) / 2);
+
+        & .solar-system__mercury-trajectory__mercury {
+          inline-size: calc(var(--planet-radius-mercury) / 2);
+
+          top: calc(var(--system-margin-mercury) - 20px);
+        }
+      }
+
+      & .solar-system__venus-trajectory {
+        inline-size: calc(var(--planet-trajectory-venus) / 2);
+
+        & .solar-system__venus-trajectory__venus {
+          inline-size: calc(var(--planet-radius-venus) / 2);
+
+          top: calc(var(--system-margin-venus) - 9px);
+        }
+      }
+
+      & .solar-system__earth-trajectory {
+        inline-size: calc(var(--planet-trajectory-earth) / 2);
+
+        & .solar-system__earth-trajectory__earth {
+          inline-size: calc(var(--planet-radius-earth) / 2);
+
+          top: calc(var(--system-margin-earth) - 19px);
+        }
+      }
+
+      & .solar-system__mars-trajectory {
+        inline-size: calc(var(--planet-trajectory-mars) / 2);
+
+        & .solar-system__mars-trajectory__mars {
+          inline-size: calc(var(--planet-radius-mars) / 2);
+
+          top: calc(var(--system-margin-mars) - 234px);
+        }
+      }
+    }
+  }
+}
+
+/** 4K and 8K Ultra HD **/
+/*
+  @media screen and (width > 1920px) {
+      & .solar-system__sun {
+          inline-size: calc(var(--star-radius-sun) * 2);
+      }
+  }
+  
+  @media screen and (width > 3840px) {
+      & .solar-system__sun {
+          inline-size: calc(var(--star-radius-sun) * 4);
+      }
+  }*/
+
+/*INICIO FÍN SECTION*/
+
+.faqsThirdSection {
+  padding-top: 25px;
+  padding-bottom: 35px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-left: 20vw;
+  padding-right: 0vw;
+  z-index: 10;
+}
+
+.faqsThirdSection > :first-child {
+  align-self: flex-start;
+}
+
+.faqsThirdSection > :last-child {
+  align-self: flex-end;
+}
+
+.faqsThirdSectioncontainer {
+  border: 1px solid #4a6eb0;
+  border-radius: 7px;
+  background-color: white;
+  margin: 0 auto;
+  padding: 4rem;
+  width: 48rem;
+  box-sizing: border-box;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+.faqsThirdSectionaccordion {
+  .faqsThirdSectionaccordion-item {
+    border-bottom: 1px solid #e5e5e5;
+
+    .faqsThirdSectionacordionButton[aria-expanded="true"] {
+      border-bottom: 1px solid rgb(129, 25, 25);
+    }
+  }
+
+  .faqsThirdSectionacordionButton {
+    position: relative;
+    display: block;
+    text-align: left;
+    width: 100%;
+    padding: 1em 0;
+    color: #7288a2;
+    font-size: 1.15rem;
+    font-weight: 400;
+    border: none;
+    background: none;
+    outline: none;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      color: #04347d;
+
+      &::after {
+        cursor: pointer;
+        color: #04347d;
+        border: 1px solid #04347d;
+      }
+    }
+
+    .faqsThirdSectionaccordion-title {
+      padding: 1em 1.5em 1em 0;
+    }
+
+    .faqsThirdSectionicon {
+      display: inline-block;
+      position: absolute;
+      top: 18px;
+      right: 0;
+      width: 22px;
+      height: 22px;
+      border: 1px solid;
+      border-radius: 22px;
+
+      &::before {
+        display: block;
+        position: absolute;
+        content: "";
+        top: 9px;
+        left: 5px;
+        width: 10px;
+        height: 2px;
+        background: currentColor;
+      }
+
+      &::after {
+        display: block;
+        position: absolute;
+        content: "";
+        top: 5px;
+        left: 9px;
+        width: 2px;
+        height: 10px;
+        background: currentColor;
+      }
+    }
+  }
+
+  .faqsThirdSectionacordionButton[aria-expanded="true"] {
+    color: #04347d;
+
+    .icon {
+      &::after {
+        width: 0;
+      }
+    }
+
+    + .faqsThirdSectionaccordion-content {
+      opacity: 1;
+      max-height: 90em;
+      transition: all 200ms linear;
+      will-change: opacity, max-height;
+    }
+  }
+
+  .faqsThirdSectionaccordion-content {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 200ms linear, max-height 200ms linear;
+    will-change: opacity, max-height;
+
+    p {
+      font-size: 1rem;
+      font-weight: 300;
+      margin: 2em 0;
+    }
+  }
+}
+
+.faqsThirdSectionacordionButton:first-child {
+  padding-right: 30px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .faqsThirdSection {
+    width: 100%;
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .faqsThirdSection {
+    width: 100%;
+    display: block;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .faqsThirdSectioncontainer {
+    padding: 1rem;
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 555px) {
+  .faqsFirstSection {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .faqsFirstSectionTitleContainer p {
+    font-size: 35px;
+  }
+
+  .faqsFirstSectionImgContainer {
+    width: 180px;
+  }
+
+  .faqsFirstSectionImgContainer img {
+    width: 100%;
+    height: 253px;
+  }
+
+  #faqsSecondSection {
+    padding-left: 10px;
+  }
+  #faqsSecondSection ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+
+  .faqsThirdSectioncontainer {
+    padding: 1rem;
+    width: 90%;
+  }
+}
