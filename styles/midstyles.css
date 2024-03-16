@@ -359,13 +359,14 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  h2 {
-    top: 0;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    color: white;
-    margin-bottom: 30px;
-  }
+}
+
+.fifthSectionContainer h2 {
+  top: 0;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: white;
+  margin-bottom: 30px;
 }
 
 .fifthSectionContainer .imagesContainer {
@@ -404,7 +405,7 @@
   }
 }
 
-/*FOOTER* */
+/*FOOTER*/
 .footerContainer {
   min-height: 100vh;
   height: auto;
@@ -415,18 +416,15 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  p,
-  .copyR {
-    color: rgb(197, 197, 197);
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    min-height: 20px;
-    text-align: center;
-  }
-  .copyR {
-    color: rgba(197, 197, 197, 0.7);
-  }
+}
+
+.footerContainer p.copyR {
+  color: rgba(197, 197, 197, 0.7);
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  min-height: 20px;
+  text-align: center;
 }
 
 .footerContact {
@@ -438,70 +436,78 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  h3 {
-    color: white;
-  }
-  aside {
-    display: flex;
-    flex-direction: column;
-    background-color: black;
-    height: 100%;
-    a {
-      display: flex;
-      flex-direction: row;
-      justify-content: left;
-      align-items: center;
-      color: white;
-      font-style: none;
-      text-decoration: none;
-      text-align: left;
-      height: 40px;
-      margin-top: 20px;
-    }
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    background-color: black;
-    min-width: 500px;
-    min-height: 300px;
-    h4 {
-      color: white;
-      font-size: 37px;
-    }
-    label {
-      color: #c5c5c5;
-      margin-bottom: -10px;
-    }
-    input,
-    textarea {
-      width: 100%;
-      border-radius: 5px;
-      padding: 8px;
-    }
-    button {
-      width: 80px;
-      height: 35px;
-      border-radius: 1000px;
-    }
-    button:hover {
-      cursor: pointer;
-    }
-  }
 }
 
-.socialNetwork {
-  width: 100%;
-  span {
-    color: rgb(197, 197, 197);
-  }
-  svg {
-    padding-right: 10px;
-    width: 40px;
-    height: 40px;
-  }
+.footerContact h3 {
+  color: white;
 }
+
+.footerContact aside {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  height: 100%;
+}
+
+.footerContact aside a {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  color: white;
+  font-style: none;
+  text-decoration: none;
+  text-align: left;
+  height: 40px;
+  margin-top: 20px;
+}
+
+.footerContact form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: black;
+  min-width: 500px;
+  min-height: 300px;
+}
+
+.footerContact form h4 {
+  color: white;
+  font-size: 37px;
+}
+
+.footerContact form label {
+  color: #c5c5c5;
+  margin-bottom: -10px;
+}
+
+.footerContact form input,
+.footerContact form textarea {
+  width: 100%;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.footerContact form button {
+  width: 80px;
+  height: 35px;
+  border-radius: 1000px;
+}
+
+.footerContact form button:hover {
+  cursor: pointer;
+}
+
+.socialNetwork span {
+  color: rgb(197, 197, 197);
+}
+
+.socialNetwork svg {
+  padding-right: 10px;
+  width: 40px;
+  height: 40px;
+}
+
 .facebook svg {
   width: 50px;
   height: 50px;
@@ -517,25 +523,23 @@
 @media only screen and (max-width: 819px) {
   .footerContact {
     flex-direction: column;
-    aside {
-      margin-top: 80px;
-    }
+  }
+  .footerContact aside {
+    margin-top: 80px;
   }
 }
 
 @media only screen and (max-width: 585px) {
-  .footerContact {
-    form {
-      min-width: 100px;
-      width: 90%;
-      label {
-        margin-bottom: 0px;
-      }
-    }
+  .footerContact form {
+    min-width: 100px;
+    width: 90%;
   }
-  .footerContainer {
-    .copyR {
-      font-size: 12px;
-    }
+
+  .footerContact form label {
+    margin-bottom: 0px;
+  }
+
+  .footerContainer .copyR {
+    font-size: 12px;
   }
 }
