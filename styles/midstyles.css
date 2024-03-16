@@ -199,7 +199,7 @@
 
 /***FOURTH SECTION ****/
 .fourthSectionContainer {
-  margin-top: 50px;
+  padding-top: 50px;
   min-height: 100vh;
   height: auto;
 }
@@ -401,5 +401,122 @@
 @media only screen and (max-width: 394px) {
   .fifthSectionContainer .imagesContainer {
     width: 100%;
+  }
+}
+
+/*FOOTER* */
+.footerContainer {
+  min-height: 100vh;
+  height: auto;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  p {
+    color: #c5c5c5;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.footerContact {
+  width: 80%;
+  min-height: 400px;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  h3 {
+    color: white;
+  }
+  aside {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    height: 100%;
+    a {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      align-items: center;
+      color: white;
+      font-style: none;
+      text-decoration: none;
+      text-align: left;
+      height: 40px;
+      margin-top: 20px;
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: black;
+    min-width: 500px;
+    min-height: 300px;
+    h4 {
+      color: white;
+      font-size: 37px;
+    }
+    label {
+      color: #c5c5c5;
+      margin-bottom: -10px;
+    }
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 5px;
+      padding: 8px;
+    }
+    button {
+      width: 80px;
+      height: 35px;
+      border-radius: 1000px;
+    }
+    button:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.socialNetwork {
+  width: 100%;
+  svg {
+    padding-right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media only screen and (max-width: 1115px) {
+  .footerContact {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 819px) {
+  .footerContact {
+    flex-direction: column;
+    aside {
+      margin-top: 80px;
+    }
+  }
+}
+
+@media only screen and (max-width: 585px) {
+  .footerContact {
+    form {
+      min-width: 100px;
+      width: 90%;
+      label {
+        margin-bottom: 0px;
+      }
+    }
   }
 }
