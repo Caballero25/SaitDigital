@@ -2,8 +2,15 @@
   padding-top: 25px;
   padding-bottom: 35px;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
   justify-content: space-evenly;
   padding-left: 20vw;
   padding-right: 0vw;
@@ -11,10 +18,12 @@
 }
 
 .faqsThirdSection > :first-child {
+  -ms-flex-item-align: start;
   align-self: flex-start;
 }
 
 .faqsThirdSection > :last-child {
+  -ms-flex-item-align: end;
   align-self: flex-end;
 }
 
@@ -25,117 +34,129 @@
   margin: 0 auto;
   padding: 4rem;
   width: 48rem;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 
   &::before,
   &::after {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
 }
 
-.faqsThirdSectionaccordion {
-  .faqsThirdSectionaccordion-item {
-    border-bottom: 1px solid #e5e5e5;
+/********************************************/
 
-    .faqsThirdSectionacordionButton[aria-expanded="true"] {
-      border-bottom: 1px solid rgb(129, 25, 25);
-    }
-  }
+.faqsThirdSectionaccordion .faqsThirdSectionaccordion-item {
+  border-bottom: 1px solid #e5e5e5;
+}
 
-  .faqsThirdSectionacordionButton {
-    position: relative;
-    display: block;
-    text-align: left;
-    width: 100%;
-    padding: 1em 0;
-    color: #7288a2;
-    font-size: 1.15rem;
-    font-weight: 400;
-    border: none;
-    background: none;
-    outline: none;
-
-    &:hover,
-    &:focus {
-      cursor: pointer;
-      color: #04347d;
-
-      &::after {
-        cursor: pointer;
-        color: #04347d;
-        border: 1px solid #04347d;
-      }
-    }
-
-    .faqsThirdSectionaccordion-title {
-      padding: 1em 1.5em 1em 0;
-    }
-
-    .faqsThirdSectionicon {
-      display: inline-block;
-      position: absolute;
-      top: 18px;
-      right: 0;
-      width: 22px;
-      height: 22px;
-      border: 1px solid;
-      border-radius: 22px;
-
-      &::before {
-        display: block;
-        position: absolute;
-        content: "";
-        top: 9px;
-        left: 5px;
-        width: 10px;
-        height: 2px;
-        background: currentColor;
-      }
-
-      &::after {
-        display: block;
-        position: absolute;
-        content: "";
-        top: 5px;
-        left: 9px;
-        width: 2px;
-        height: 10px;
-        background: currentColor;
-      }
-    }
-  }
-
+.faqsThirdSectionaccordion
   .faqsThirdSectionacordionButton[aria-expanded="true"] {
+  border-bottom: 1px solid rgb(129, 25, 25);
+}
+
+.faqsThirdSectionaccordion .faqsThirdSectionacordionButton {
+  position: relative;
+  display: block;
+  text-align: left;
+  width: 100%;
+  padding: 1em 0;
+  color: #7288a2;
+  font-size: 1.15rem;
+  font-weight: 400;
+  border: none;
+  background: none;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
     color: #04347d;
 
-    .icon {
-      &::after {
-        width: 0;
-      }
-    }
-
-    + .faqsThirdSectionaccordion-content {
-      opacity: 1;
-      max-height: 90em;
-      transition: all 200ms linear;
-      will-change: opacity, max-height;
-    }
-  }
-
-  .faqsThirdSectionaccordion-content {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: opacity 200ms linear, max-height 200ms linear;
-    will-change: opacity, max-height;
-
-    p {
-      font-size: 1rem;
-      font-weight: 300;
-      margin: 2em 0;
+    &::after {
+      cursor: pointer;
+      color: #04347d;
+      border: 1px solid #04347d;
     }
   }
 }
+
+.faqsThirdSectionaccordion
+  .faqsThirdSectionacordionButton
+  .faqsThirdSectionaccordion-title {
+  padding: 1em 1.5em 1em 0;
+}
+
+.faqsThirdSectionaccordion
+  .faqsThirdSectionacordionButton
+  .faqsThirdSectionicon {
+  display: inline-block;
+  position: absolute;
+  top: 18px;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid;
+  border-radius: 22px;
+
+  &::before {
+    display: block;
+    position: absolute;
+    content: "";
+    top: 9px;
+    left: 5px;
+    width: 10px;
+    height: 2px;
+    background: currentColor;
+  }
+
+  &::after {
+    display: block;
+    position: absolute;
+    content: "";
+    top: 5px;
+    left: 9px;
+    width: 2px;
+    height: 10px;
+    background: currentColor;
+  }
+}
+
+.faqsThirdSectionacordionButton[aria-expanded="true"] {
+  color: #04347d;
+
+  .icon {
+    &::after {
+      width: 0;
+    }
+  }
+
+  + .faqsThirdSectionaccordion-content {
+    opacity: 1;
+    max-height: 90em;
+    -webkit-transition: all 200ms linear;
+    -o-transition: all 200ms linear;
+    transition: all 200ms linear;
+    will-change: opacity, max-height;
+  }
+}
+
+.faqsThirdSectionaccordion-content {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: opacity 200ms linear, max-height 200ms linear;
+  -o-transition: opacity 200ms linear, max-height 200ms linear;
+  transition: opacity 200ms linear, max-height 200ms linear;
+  will-change: opacity, max-height;
+}
+
+.faqsThirdSectionaccordion-content p {
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 2em 0;
+}
+/**********************************************/
 
 .faqsThirdSectionacordionButton:first-child {
   padding-right: 30px;
@@ -187,6 +208,7 @@
     padding-left: 10px;
   }
   #faqsSecondSection ol {
+    display: -ms-grid;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
   }
@@ -209,8 +231,15 @@
   padding-top: 70px;
   padding-left: 5px;
   padding-right: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 .sectionFourthPros h2 {
@@ -226,10 +255,24 @@
 }
 
 .sectionFourthSlider {
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    right top,
+    from(#35373b),
+    to(#bedce2)
+  );
+  background-image: -o-linear-gradient(bottom left, #35373b, #bedce2);
   background-image: linear-gradient(to top right, #35373b, #bedce2);
   top: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -248,6 +291,8 @@
   background-color: #fff;
   border-radius: 10px;
   padding: 30px;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
   transition: 0.5s;
   left: calc(50% - 160px);
   top: 0;
@@ -284,6 +329,8 @@
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   opacity: 0.55;
+  -webkit-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
   transition: opacity 0.5s;
 }
 
@@ -327,6 +374,8 @@
     height: 400px;
     width: 250px;
     padding: 15px;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
     transition: 0.5s;
     left: calc(50% - 122.5px);
   }
@@ -354,9 +403,18 @@
 .fifthSectionContainer {
   min-height: 80vh;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   text-align: center;
 }
@@ -370,14 +428,23 @@
 }
 
 .fifthSectionContainer .imagesContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
   width: 50%;
 }
 
 .fifthSectionContainer .imagesContainer img {
+  -webkit-box-shadow: 0 0 10px rgb(95, 94, 94);
   box-shadow: 0 0 10px rgb(95, 94, 94);
   border-radius: 10px;
   margin-bottom: 20px;
@@ -411,9 +478,18 @@
   height: auto;
   width: 100%;
   background-color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   position: relative;
 }
@@ -432,9 +508,17 @@
   width: 80%;
   min-height: 400px;
   background-color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
 }
 
@@ -443,16 +527,30 @@
 }
 
 .footerContact aside {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   background-color: black;
   height: 100%;
 }
 
 .footerContact aside a {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-pack: left;
+  -ms-flex-pack: left;
   justify-content: left;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   color: white;
   font-style: none;
@@ -463,8 +561,15 @@
 }
 
 .footerContact form {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
   justify-content: space-evenly;
   background-color: black;
   min-width: 500px;
@@ -522,6 +627,9 @@
 
 @media only screen and (max-width: 819px) {
   .footerContact {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
   }
   .footerContact aside {
