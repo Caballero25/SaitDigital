@@ -13,27 +13,23 @@
                 item.style.zIndex = 2;
                 item.style.filter = 'none';
                 item.style.opacity = 1;
-                item.style.boxShadow = "0 0 20px rgba(167, 25, 20, 0.5)";
             } else if (index === active - 1 && active > 0) {
                 let stt = 1;
                 item.style.transform = `translateX(${-120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(1deg)`;
                 item.style.zIndex = stt;
                 item.style.filter = 'blur(5px)';
                 item.style.opacity = stt > 2 ? 0 : 0.6;
-                item.style.boxShadow = "none";
             } else if (index === active + 1 && active < items.length - 1) {
                 let stt = 1;
                 item.style.transform = `translateX(${120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(-1deg)`;
                 item.style.zIndex = stt;
                 item.style.filter = 'blur(5px)';
                 item.style.opacity = stt > 2 ? 0 : 0.6;
-                item.style.boxShadow = "none";
             } else {
                 item.style.transform = 'none';
                 item.style.zIndex = 0;
                 item.style.filter = 'none';
                 item.style.opacity = 0;
-                item.style.boxShadow = "none";
             }
         });
     }

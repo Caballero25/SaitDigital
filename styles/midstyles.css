@@ -415,13 +415,17 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  p {
-    color: #c5c5c5;
+  p,
+  .copyR {
+    color: rgb(197, 197, 197);
     position: absolute;
     bottom: 20px;
     width: 100%;
     min-height: 20px;
     text-align: center;
+  }
+  .copyR {
+    color: rgba(197, 197, 197, 0.7);
   }
 }
 
@@ -489,6 +493,9 @@
 
 .socialNetwork {
   width: 100%;
+  span {
+    color: rgb(197, 197, 197);
+  }
   svg {
     padding-right: 10px;
     width: 40px;
@@ -524,6 +531,11 @@
       label {
         margin-bottom: 0px;
       }
+    }
+  }
+  .footerContainer {
+    .copyR {
+      font-size: 12px;
     }
   }
 }
